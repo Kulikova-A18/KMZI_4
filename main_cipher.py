@@ -72,5 +72,5 @@ print(f"Закрытый ключ d: {d}")
 print(f"\n(проверка) Расшифрование")
 decrypted_text = modular_exponentiation(ciphertext, d, n)
 # Вывод расшифрованного текста
-print(f"\nРасшифрованный текст (в десятичном виде): x_10 = {decrypted_text}")
-print(f"Расшифрованный текст (в двоичном виде): x_2 = {bin(decrypted_text)[2:]}")
+print(f"\nРасшифрованный текст (в десятичном виде): {decrypted_text}")
+print(f"Расшифрованный текст (в двоичном виде): {bin(decrypted_text)[2:]}")
