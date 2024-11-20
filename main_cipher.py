@@ -21,7 +21,7 @@ def mod_inverse(e, phi):
     if gcd != 1:
         raise ValueError("Обратного элемента не существует")
     else:
-        print(f"обратный элемент = {x % phi}")
+        print(f"=> обратный элемент = {x % phi}")
         return x % phi
 
 # Функция для вычисления модульного возведения в степень
