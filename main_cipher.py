@@ -11,31 +11,49 @@ def extended_gcd(a, b):
     if a == 0:
         return b, 0, 1
     gcd, x1, y1 = extended_gcd(b % a, a)
+    print(f"{y1} - ({b} / {a}) * {x1} = ")
     x = y1 - (b // a) * x1
     y = x1
     return gcd, x, y
 
 def mod_inverse(e, phi):
     print_gcd(e, phi)
+    print()
     gcd, x, _ = extended_gcd(e, phi)
     if gcd != 1:
         raise ValueError("Обратного элемента не существует")
     else:
-        print(f"=> обратный элемент = {x % phi}")
+        print(f"=> обратный элемент = {x} mod {phi}={x % phi}")
         return x % phi
 
 # Функция для вычисления модульного возведения в степень
 def modular_exponentiation(base, exponent, modulus):
     result = 1
-    print(f"b = b mod n = {base} mod {modulus} = {base % modulus}")
+    print(f"{base} mod {modulus} = {base % modulus}")
     base = base % modulus
     while exponent > 0:
         if (exponent % 2) == 1:  # Если exponent нечетный
-            print(f"(e нечетный тогда) e mod 2 = {exponent} mod 2 = {exponent % 2} => ({result} * {base}) mod {modulus} = {(result * base) % modulus} | => e = e / 2 = {exponent} / 2 = {exponent >> 1}")
+            print(f"(e нечетный тогда) e mod 2 = {exponent} mod 2 = {exponent % 2} => ({result} * {base}) mod {modulus} = {(result * base) % modulus} ")
             result = (result * base) % modulus
         exponent = exponent >> 1  # Делим exponent на 2
+        print(f"e = {exponent} / 2 = { exponent >> 1}")
         if(exponent != 0):
-            print(f"b = b^2 mod {modulus} = {base * base} mod {modulus} = {(base * base) % modulus}")
+            print(f"c = {base}^2 mod {modulus} = {base * base} mod {modulus} = {(base * base) % modulus}")
+        base = (base * base) % modulus
+    return result
+
+def modular_exponentiation2(base, exponent, modulus):
+    result = 1
+    print(f"{base} mod {modulus} = {base % modulus}")
+    base = base % modulus
+    while exponent > 0:
+        if (exponent % 2) == 1:  # Если exponent нечетный
+            print(f"(d нечетный тогда) d mod 2 = {exponent} mod 2 = {exponent % 2} => ({result} * {base}) mod {modulus} = {(result * base) % modulus}")
+            result = (result * base) % modulus
+        exponent = exponent >> 1  # Делим exponent на 2
+        print(f"d = {exponent} / 2 = { exponent >> 1}")
+        if(exponent != 0):
+            print(f"{base}^2 mod {modulus} = {base * base} mod {modulus} = {(base * base) % modulus}")
         base = (base * base) % modulus
     return result
 
@@ -70,7 +88,7 @@ d = mod_inverse(e, phi_n)  # Вычисляем закрытый ключ d
 print(f"Закрытый ключ d: {d}")
 
 print(f"\n(проверка) Расшифрование")
-decrypted_text = modular_exponentiation(ciphertext, d, n)
+decrypted_text = modular_exponentiation2(ciphertext, d, n)
 # Вывод расшифрованного текста
 print(f"\nРасшифрованный текст (в десятичном виде): {decrypted_text}")
 print(f"Расшифрованный текст (в двоичном виде): {bin(decrypted_text)[2:]}")
