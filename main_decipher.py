@@ -56,8 +56,8 @@ def mod_inverse(p, q, M_1, M_2):
 # Основная функция
 def rsa_example():
     # Шаг 1: Определение параметров RSA
-    p = 101
-    q = 137
+    p = 131
+    q = 211
     N = p * q  # N = p * q
     phi_N = (p - 1) * (q - 1)  # φ(N) = (p-1)(q-1)
     e = 17  # Открытый экспонент
@@ -93,8 +93,8 @@ def rsa_example():
     print(f"y_q = Y mod q = {Y_decimal} mod {q} = {y_q}")
 
     # Шаг 6: Вычисление M_1 и M_2 (тут надо менять)
-    M_1 = 76
-    M_2 = 80
+    M_1 = 121
+    M_2 = 40
 
     print(f"\nM_1 = (y_p)^(d_q) mod p = {y_p}^{d_p} mod {p} = {M_1}")
     print(f"M_2 = (y_q)^(d_p) mod q = {y_q}^{d_q} mod {q} = {M_2}")
